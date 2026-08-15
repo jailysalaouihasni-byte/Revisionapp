@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéRévisions</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+      <div class="pokemon-decoration pokemon-gauche">
+
+    <img
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
+        alt="Salamèche"
+    >
+
+    <img
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+        alt="Bulbizarre"
+    >
+
+    <img
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
+        alt="Carapuce"
+    >
+
+    <img
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png"
+        alt="Évoli"
+    >
+
+    <img
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/448.png"
+        alt="Lucario"
+    >
+
+</div>
+
+<div class="pokemon-decoration pokemon-droite">
+
+    <img
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+        alt="Pikachu"
+    >
+
+    <img
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/483.png"
+        alt="Dialga"
+    >
+
+    <img
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png"
+        alt="Ectoplasma"
+    >
+
+    <img
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/384.png"
+        alt="Rayquaza"
+    >
+
+    <img
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/658.png"
+        alt="Amphinobi"
+    >
+
+</div>
+
+    <main id="app">
+
+      <!-- CRÉATION DU PROFIL -->
+<section id="creation-profil" class="ecran actif">
+    <h1>Bienvenue, Dresseur !</h1>
+
+    <p>Quel est ton prénom ?</p>
+
+    <input
+        type="text"
+        id="nom-dresseur"
+        placeholder="Entre ton prénom"
+        maxlength="20"
+    >
+
+    <p>Choisis ton premier Pokémon :</p>
+
+   <div id="choix-pokemon">
+
+    <button class="pokemon-depart" data-pokemon="Salamèche">
+        <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
+            alt="Salamèche"
+        >
+        <strong>Salamèche</strong>
+        <span class="type-pokemon type-feu">🔥 Feu</span>
+        <small>Un Pokémon courageux à la flamme ardente.</small>
+    </button>
+
+    <button class="pokemon-depart" data-pokemon="Pikachu">
+        <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+            alt="Pikachu"
+        >
+        <strong>Pikachu</strong>
+        <span class="type-pokemon type-electrik">⚡ Électrik</span>
+        <small>Rapide et énergique, il maîtrise la foudre.</small>
+    </button>
+
+    <button class="pokemon-depart" data-pokemon="Carapuce">
+        <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
+            alt="Carapuce"
+        >
+        <strong>Carapuce</strong>
+        <span class="type-pokemon type-eau">💧 Eau</span>
+        <small>Résistant et calme, il combat avec précision.</small>
+    </button>
+
+    <button class="pokemon-depart" data-pokemon="Bulbizarre">
+        <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+            alt="Bulbizarre"
+        >
+        <strong>Bulbizarre</strong>
+        <span class="type-pokemon type-plante">🌿 Plante</span>
+        <small>Équilibré et fidèle, il puise sa force dans la nature.</small>
+    </button>
+
+    <button class="pokemon-depart" data-pokemon="Évoli">
+        <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png"
+            alt="Évoli"
+        >
+        <strong>Évoli</strong>
+        <span class="type-pokemon type-normal">⭐ Normal</span>
+        <small>Un Pokémon adaptable aux nombreuses évolutions.</small>
+    </button>
+
+    <button class="pokemon-depart" data-pokemon="Riolu">
+        <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/447.png"
+            alt="Riolu"
+        >
+        <strong>Riolu</strong>
+        <span class="type-pokemon type-combat">🥊 Combat</span>
+        <small>Il ressent les émotions grâce à son aura.</small>
+    </button>
+
+    <button class="pokemon-depart" data-pokemon="Fantominus">
+        <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/92.png"
+            alt="Fantominus"
+        >
+        <strong>Fantominus</strong>
+        <span class="type-pokemon type-spectre">👻 Spectre</span>
+        <small>Malicieux et mystérieux, il aime surprendre.</small>
+    </button>
+
+    <button class="pokemon-depart" data-pokemon="Minidraco">
+        <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/147.png"
+            alt="Minidraco"
+        >
+        <strong>Minidraco</strong>
+        <span class="type-pokemon type-dragon">🐉 Dragon</span>
+        <small>Rare et prometteur, il possède un immense potentiel.</small>
+    </button>
+
+</div>
+
+    <p id="pokemon-selectionne">
+        Aucun Pokémon sélectionné
+    </p>
+
+    <button id="creer-profil">
+        Commencer l’aventure
+    </button>
+
+    <p id="erreur-profil"></p>
+</section>
+
+<section id="professeur" class="ecran">
+
+    <img
+        src="https://archives.bulbagarden.net/media/upload/7/73/Oak_FRLG.png"
+        alt="Professeur Chen"
+        id="image-professeur"
+    >
+
+    <h2>Professeur Chen</h2>
+
+    <div id="boite-dialogue">
+
+        <p id="texte-professeur"></p>
+
+    </div>
+
+    <button id="suivant-dialogue">
+        Suivant
+    </button>
+
+</section>
+
+<!-- CARTE DU DRESSEUR -->
+<section id="carte-dresseur" class="ecran">
+
+    <h2>Carte du Dresseur</h2>
+
+    <div class="profil-dresseur">
+
+        <h3 id="affichage-nom">Dresseur</h3>
+
+        <img
+            id="image-pokemon"
+            src=""
+            alt="Pokémon du dresseur"
+        >
+
+        <p id="affichage-pokemon"></p>
+
+        <p id="affichage-niveau">
+            Niveau 1
+        </p>
+
+        <div class="barre-xp">
+            <div id="remplissage-xp"></div>
+        </div>
+
+        <p id="texte-xp">
+            0 / 100 XP
+        </p>
+
+        <p id="affichage-pokedollars">
+            💰 0 Pokédollars
+        </p>
+
+        <h3>🏅 Badges</h3>
+
+<div id="liste-badges">
+    Aucun badge
+</div>
+
+    <button id="continuer-aventure">
+        Continuer
+    </button>
+
+</section>
+
+        <!-- MENU PRINCIPAL -->
+        <section id="menu-principal" class="ecran">
+            <h1>PokéRévisions</h1>
+
+            <p>Choisis ton mode d'entraînement</p>
+
+            <button id="entrainement">Entraînement</button>
+            <button id="examen">Examen</button>
+            <button id="stats">Statistiques</button>
+        </section>
+
+        <!-- MENU DES MATIÈRES -->
+        <section id="menu-matieres" class="ecran">
+
+            <h2>Choisis une matière</h2>
+
+            <button class="matiere" data-matiere="biologie">🧬 Biologie</button>
+            <button class="matiere" data-matiere="chimie">🧪 Chimie</button>
+            <button class="matiere" data-matiere="physique">⚡ Physique</button>
+            <button class="matiere" data-matiere="maths">📐 Maths</button>
+            <button class="matiere" data-matiere="anglais">🇬🇧 Anglais</button>
+
+            <br><br>
+
+            <button id="retour-menu">⬅ Retour</button>
+
+        </section>
+
+<section id="menu-qcm-biologie" class="ecran">
+
+    <h2>🧬 Choisis un QCM</h2>
+
+    <button class="qcm-bio" data-qcm="1">📚 QCM 1 - Bases de la biologie</button>
+
+    <button class="qcm-bio" data-qcm="2">📚 QCM 2 - La cellule</button>
+
+    <button class="qcm-bio" data-qcm="3">📚 QCM 3 - Génétique</button>
+
+    <button class="qcm-bio" data-qcm="4">📚 QCM 4 - ADN et ARN</button>
+
+    <button class="qcm-bio" data-qcm="5">📚 QCM 5 - Division cellulaire</button>
+
+    <button class="qcm-bio" data-qcm="6">📚 QCM 6 - Physiologie cellulaire</button>
+
+    <button class="qcm-bio" data-qcm="7">📚 QCM 7 - Biologie avancée</button>
+
+    <br><br>
+
+    <button id="retour-qcm-biologie">⬅ Retour</button>
+
+</section>
+
+      <section id="menu-qcm-chimie" class="ecran">
+
+    <h2>🧪 Choisis un QCM</h2>
+
+    <button class="qcm-chimie" data-qcm="1">🧪 QCM 1 - Atomes et éléments</button>
+    <button class="qcm-chimie" data-qcm="2">🧪 QCM 2 - Molécules et liaisons</button>
+    <button class="qcm-chimie" data-qcm="3">🧪 QCM 3 - Moles et masses molaires</button>
+    <button class="qcm-chimie" data-qcm="4">🧪 QCM 4 - Solutions et concentrations</button>
+    <button class="qcm-chimie" data-qcm="5">🧪 QCM 5 - Acides, bases et pH</button>
+    <button class="qcm-chimie" data-qcm="6">🧪 QCM 6 - Chimie organique</button>
+    <button class="qcm-chimie" data-qcm="7">🧪 QCM 7 - Test blanc</button>
+
+    <br><br>
+
+    <button id="retour-qcm-chimie">⬅ Retour</button>
+
+</section>
+
+        <!-- ÉCRAN DU QUIZ -->
+        <section id="ecran-quiz" class="ecran">
+
+            <p id="progression">Question 1 sur 3</p>
+
+            <h2 id="question">Question ici</h2>
+
+            <div id="reponses"></div>
+
+            <p id="correction"></p>
+
+            <button id="question-suivante">Question suivante</button>
+
+            <br><br>
+
+            <button id="quitter-quiz">⬅ Quitter</button>
+
+        </section>
+
+<section id="professeur-resultat" class="ecran">
+
+    <img
+        id="image-professeur-resultat"
+        src="https://archives.bulbagarden.net/media/upload/7/73/Oak_FRLG.png"
+        alt="Professeur Chen"
+    >
+
+    <h2>Professeur Chen</h2>
+
+    <div class="boite-dialogue-professeur">
+        <p id="message-professeur-resultat"></p>
+    </div>
+
+    <button id="voir-resultats">
+        Voir mes résultats
+    </button>
+
+</section>
+
+        <!-- ÉCRAN DES RÉSULTATS -->
+<section id="ecran-resultats" class="ecran">
+
+    <h2>Résultats</h2>
+
+    <p id="score-final"></p>
+    <p id="xp-gagne"></p>
+    <p id="niveau-joueur"></p>
+
+    <button id="rejouer">Rejouer</button>
+    <button id="retour-resultats">Retour au menu</button>
+
+</section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
