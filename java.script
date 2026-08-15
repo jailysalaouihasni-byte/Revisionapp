@@ -1,0 +1,24 @@
+const professeurResultat =
+    document.getElementById("professeur-resultat");
+
+const messageProfesseurResultat =
+    document.getElementById("message-professeur-resultat");
+
+const boutonVoirResultats =
+    document.getElementById("voir-resultats");
+const carteDresseur = document.getElementById("carte-dresseur");
+
+const affichageNom = document.getElementById("affichage-nom");
+const imagePokemon = document.getElementById("image-pokemon");
+const affichagePokemon = document.getElementById("affichage-pokemon");
+const affichageNiveau = document.getElementById("affichage-niveau");
+const remplissageXp = document.getElementById("remplissage-xp");
+const texteXp = document.getElementById("texte-xp");
+const affichagePokedollars = document.getElementById("affichage-pokedollars");
+
+const boutonContinuerAventure =
+    document.getElementById("continuer-aventure");
+const creationProfil = document.getElementById("creation-profil");
+const menuPrincipal = document.getElementById("menu-principal");
+const menuMatieres = document.getElementById("menu-matieres");
+});
