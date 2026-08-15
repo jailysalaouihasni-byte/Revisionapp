@@ -1,0 +1,1794 @@
+const professeurResultat =
+    document.getElementById("professeur-resultat");
+
+const messageProfesseurResultat =
+    document.getElementById("message-professeur-resultat");
+
+const boutonVoirResultats =
+    document.getElementById("voir-resultats");
+const carteDresseur = document.getElementById("carte-dresseur");
+
+const affichageNom = document.getElementById("affichage-nom");
+const imagePokemon = document.getElementById("image-pokemon");
+const affichagePokemon = document.getElementById("affichage-pokemon");
+const affichageNiveau = document.getElementById("affichage-niveau");
+const remplissageXp = document.getElementById("remplissage-xp");
+const texteXp = document.getElementById("texte-xp");
+const affichagePokedollars = document.getElementById("affichage-pokedollars");
+
+const boutonContinuerAventure =
+    document.getElementById("continuer-aventure");
+const creationProfil = document.getElementById("creation-profil");
+const menuPrincipal = document.getElementById("menu-principal");
+const menuMatieres = document.getElementById("menu-matieres");
+const menuQcmBiologie =
+    document.getElementById("menu-qcm-biologie");
+
+const boutonRetourQcmBiologie =
+    document.getElementById("retour-qcm-biologie");
+const menuQcmChimie =
+    document.getElementById("menu-qcm-chimie");
+
+const boutonRetourQcmChimie =
+    document.getElementById("retour-qcm-chimie");
+const ecranQuiz = document.getElementById("ecran-quiz");
+const ecranResultats = document.getElementById("ecran-resultats");
+
+const champNomDresseur = document.getElementById("nom-dresseur");
+const textePokemonSelectionne = document.getElementById("pokemon-selectionne");
+const erreurProfil = document.getElementById("erreur-profil");
+const boutonCreerProfil = document.getElementById("creer-profil");
+
+const scoreFinal = document.getElementById("score-final");
+const xpGagne = document.getElementById("xp-gagne");
+const niveauJoueur = document.getElementById("niveau-joueur");
+
+const boutonRejouer = document.getElementById("rejouer");
+const boutonRetourResultats = document.getElementById("retour-resultats");
+
+const boutonEntrainement = document.getElementById("entrainement");
+const boutonRetour = document.getElementById("retour-menu");
+const boutonQuitterQuiz = document.getElementById("quitter-quiz");
+const boutonSuivant = document.getElementById("question-suivante");
+
+const texteQuestion = document.getElementById("question");
+const zoneReponses = document.getElementById("reponses");
+const correction = document.getElementById("correction");
+const progression = document.getElementById("progression");
+document.querySelectorAll(".pokemon-depart").forEach((bouton) => {
+    bouton.addEventListener("click", () => {
+        pokemonChoisi = bouton.dataset.pokemon;
+
+        textePokemonSelectionne.textContent =
+            `Pokémon sélectionné : ${pokemonChoisi}`;
+
+        document.querySelectorAll(".pokemon-depart").forEach((autreBouton) => {
+            autreBouton.classList.remove("selectionne");
+        });
+
+        bouton.classList.add("selectionne");
+        erreurProfil.textContent = "";
+    });
+});
+
+const questionsBiologie1 = [
+
+{
+    question: "Quelle est l'unité de base du vivant ?",
+    reponses: ["Le tissu", "La cellule", "L'organe", "L'atome"],
+    bonneReponse: 1
+},
+
+{
+    question: "Quel organite produit principalement l'énergie de la cellule ?",
+    reponses: ["Le noyau", "La mitochondrie", "Le ribosome", "Le lysosome"],
+    bonneReponse: 1
+},
+
+{
+    question: "Où se trouve principalement l'ADN dans une cellule humaine ?",
+    reponses: ["Dans le noyau", "Dans le cytoplasme", "Dans la membrane", "Dans les ribosomes"],
+    bonneReponse: 0
+},
+
+{
+    question: "Quelle molécule transporte l'information génétique ?",
+    reponses: ["L'ADN", "Le glucose", "Les lipides", "L'eau"],
+    bonneReponse: 0
+},
+
+{
+    question: "Combien de cellules obtient-on après une mitose ?",
+    reponses: ["1", "2", "3", "4"],
+    bonneReponse: 1
+},
+
+{
+    question: "Quel est le rôle principal de la membrane plasmique ?",
+    reponses: [
+        "Produire de l'énergie",
+        "Contrôler les échanges",
+        "Fabriquer les protéines",
+        "Stocker l'ADN"
+    ],
+    bonneReponse: 1
+},
+
+{
+    question: "Les protéines sont fabriquées par :",
+    reponses: [
+        "Les ribosomes",
+        "Les mitochondries",
+        "Le noyau",
+        "Le cytoplasme"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "Quel est le plus haut niveau d'organisation ?",
+    reponses: [
+        "Cellule",
+        "Tissu",
+        "Organe",
+        "Organisme"
+    ],
+    bonneReponse: 3
+},
+
+{
+    question: "Le cytoplasme est :",
+    reponses: [
+        "Le liquide contenu dans la cellule",
+        "Le noyau",
+        "Une protéine",
+        "Une membrane"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "La biologie est la science qui étudie :",
+    reponses: [
+        "Les nombres",
+        "La matière",
+        "Le vivant",
+        "Les planètes"
+    ],
+    bonneReponse: 2
+}
+
+];
+
+const questionsBiologie2 = [
+
+    {
+        question: "Quel type de cellule ne possède pas de noyau ?",
+        reponses: [
+            "La cellule animale",
+            "La cellule végétale",
+            "La cellule procaryote",
+            "La cellule musculaire"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Quel organite est responsable de la photosynthèse ?",
+        reponses: [
+            "La mitochondrie",
+            "Le chloroplaste",
+            "Le ribosome",
+            "Le lysosome"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quelle molécule constitue principalement les membranes cellulaires ?",
+        reponses: [
+            "Les phospholipides",
+            "L’ADN",
+            "Le glucose",
+            "L’ARN"
+        ],
+        bonneReponse: 0
+    },
+
+    {
+        question: "Quel est le rôle principal du noyau ?",
+        reponses: [
+            "Produire l’énergie",
+            "Contrôler l’activité cellulaire",
+            "Détruire les déchets",
+            "Fabriquer le glucose"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "La diffusion correspond au déplacement des molécules :",
+        reponses: [
+            "D’une zone peu concentrée vers une zone très concentrée",
+            "D’une zone très concentrée vers une zone peu concentrée",
+            "Uniquement grâce à l’ATP",
+            "Uniquement à travers le noyau"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quel organite contient les enzymes digestives de la cellule ?",
+        reponses: [
+            "Le lysosome",
+            "Le ribosome",
+            "Le centrosome",
+            "Le chloroplaste"
+        ],
+        bonneReponse: 0
+    },
+
+    {
+        question: "Quelle structure est présente chez les cellules végétales mais pas chez les cellules animales ?",
+        reponses: [
+            "La membrane plasmique",
+            "Le cytoplasme",
+            "La paroi cellulaire",
+            "Le noyau"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Les ribosomes participent à la fabrication :",
+        reponses: [
+            "Des lipides",
+            "Des protéines",
+            "De l’ADN",
+            "De l’eau"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quel phénomène permet à une cellule de se diviser en deux cellules identiques ?",
+        reponses: [
+            "La méiose",
+            "La transcription",
+            "La mitose",
+            "La traduction"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Quel élément est indispensable au transport actif ?",
+        reponses: [
+            "L’ATP",
+            "Le dioxyde de carbone",
+            "La lumière",
+            "Le calcium uniquement"
+        ],
+        bonneReponse: 0
+    }
+
+];
+
+const questionsBiologie3 = [
+
+    {
+        question: "Quelle est la forme de la molécule d'ADN ?",
+        reponses: [
+            "Une hélice simple",
+            "Une double hélice",
+            "Une sphère",
+            "Une chaîne circulaire"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quelles sont les quatre bases de l'ADN ?",
+        reponses: [
+            "A, U, C, G",
+            "A, T, C, G",
+            "A, T, U, G",
+            "A, C, G, P"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quelle base remplace la thymine dans l'ARN ?",
+        reponses: [
+            "La cytosine",
+            "La guanine",
+            "L'uracile",
+            "L'adénine"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Quel est le rôle principal de l'ARN messager ?",
+        reponses: [
+            "Stocker les lipides",
+            "Transporter l'information génétique vers les ribosomes",
+            "Produire de l'énergie",
+            "Former la membrane cellulaire"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Une portion d'ADN portant une information est appelée :",
+        reponses: [
+            "Un chromosome",
+            "Un gène",
+            "Un ribosome",
+            "Un organite"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Combien de chromosomes possède une cellule humaine normale ?",
+        reponses: [
+            "23",
+            "44",
+            "46",
+            "92"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Les chromosomes sont principalement constitués de :",
+        reponses: [
+            "Lipides et eau",
+            "ADN et protéines",
+            "Glucose et calcium",
+            "ARN uniquement"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Comment appelle-t-on la fabrication d'un ARN à partir de l'ADN ?",
+        reponses: [
+            "La traduction",
+            "La réplication",
+            "La transcription",
+            "La mitose"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "La traduction permet de fabriquer :",
+        reponses: [
+            "De l'ADN",
+            "Des protéines",
+            "Des lipides",
+            "Des chromosomes"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Qui a découvert la structure en double hélice de l'ADN ?",
+        reponses: [
+            "Pasteur",
+            "Watson et Crick",
+            "Darwin",
+            "Mendel"
+        ],
+        bonneReponse: 1
+    }
+
+];
+
+const questionsBiologie4 = [
+
+    {
+        question: "Quel est le rôle principal de la mitose ?",
+        reponses: [
+            "Produire des gamètes",
+            "Former deux cellules identiques",
+            "Créer des mutations",
+            "Fabriquer des protéines"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "La méiose permet de produire :",
+        reponses: [
+            "Des cellules identiques",
+            "Des cellules diploïdes",
+            "Des gamètes",
+            "Des bactéries"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Combien de divisions successives comporte la méiose ?",
+        reponses: [
+            "Une",
+            "Deux",
+            "Trois",
+            "Quatre"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Combien de cellules obtient-on à la fin d'une méiose ?",
+        reponses: [
+            "Deux",
+            "Trois",
+            "Quatre",
+            "Huit"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Les cellules obtenues après une mitose sont :",
+        reponses: [
+            "Toutes différentes",
+            "Génétiquement identiques",
+            "Toujours haploïdes",
+            "Toujours des gamètes"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quelle phase de la mitose est caractérisée par l'alignement des chromosomes au centre de la cellule ?",
+        reponses: [
+            "Prophase",
+            "Métaphase",
+            "Anaphase",
+            "Télophase"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Lors de l'anaphase, les chromosomes :",
+        reponses: [
+            "Disparaissent",
+            "Se dédoublent",
+            "Se séparent vers les pôles opposés",
+            "Fusionnent"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Le brassage génétique se produit principalement pendant :",
+        reponses: [
+            "La mitose",
+            "La méiose",
+            "La transcription",
+            "La traduction"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Le cycle cellulaire comprend principalement :",
+        reponses: [
+            "Interphase et mitose",
+            "Photosynthèse et respiration",
+            "Méiose uniquement",
+            "Transcription et traduction"
+        ],
+        bonneReponse: 0
+    },
+
+    {
+        question: "Quelle est la fonction biologique de la méiose ?",
+        reponses: [
+            "Assurer la croissance",
+            "Réparer les tissus",
+            "Produire les cellules reproductrices",
+            "Produire de l'énergie"
+        ],
+        bonneReponse: 2
+    }
+
+];
+
+const questionsBiologie5 = [
+
+    {
+        question: "Quel organe est responsable de la circulation du sang ?",
+        reponses: [
+            "Le foie",
+            "Le cœur",
+            "Le cerveau",
+            "Le rein"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quel gaz est principalement transporté des poumons vers les organes ?",
+        reponses: [
+            "Le dioxyde de carbone",
+            "L'oxygène",
+            "L'azote",
+            "L'hydrogène"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quel est le principal rôle des globules rouges ?",
+        reponses: [
+            "Combattre les microbes",
+            "Transporter l'oxygène",
+            "Produire des hormones",
+            "Digérer les aliments"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quel organe produit la bile ?",
+        reponses: [
+            "Le pancréas",
+            "Le foie",
+            "L'estomac",
+            "Le côlon"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Où commence principalement la digestion des protéines ?",
+        reponses: [
+            "Dans la bouche",
+            "Dans l'estomac",
+            "Dans le côlon",
+            "Dans l'œsophage"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quel organe absorbe la majorité des nutriments ?",
+        reponses: [
+            "Le gros intestin",
+            "L'estomac",
+            "L'intestin grêle",
+            "Le foie"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Quelle cellule est principalement impliquée dans la défense immunitaire ?",
+        reponses: [
+            "Le globule rouge",
+            "Le neurone",
+            "Le globule blanc",
+            "La plaquette"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Quel organe contrôle l'ensemble du système nerveux ?",
+        reponses: [
+            "Le cœur",
+            "Le cerveau",
+            "Le foie",
+            "Le pancréas"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quel est le rôle des plaquettes sanguines ?",
+        reponses: [
+            "Transporter l'oxygène",
+            "Produire des hormones",
+            "Permettre la coagulation",
+            "Digérer les aliments"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Quelle est l'unité fonctionnelle du système nerveux ?",
+        reponses: [
+            "Le neurone",
+            "Le globule rouge",
+            "Le ribosome",
+            "Le chromosome"
+        ],
+        bonneReponse: 0
+    }
+
+];
+
+const questionsBiologie6 = [
+
+    {
+        question: "Qui est l'auteur de la théorie de l'évolution par sélection naturelle ?",
+        reponses: [
+            "Louis Pasteur",
+            "Charles Darwin",
+            "Gregor Mendel",
+            "Watson"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "La biodiversité désigne :",
+        reponses: [
+            "Le nombre d'êtres humains",
+            "La diversité des êtres vivants",
+            "Le climat d'une région",
+            "La quantité d'eau sur Terre"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quel est le rôle principal des producteurs dans un écosystème ?",
+        reponses: [
+            "Manger les animaux",
+            "Fabriquer leur matière organique grâce à la photosynthèse",
+            "Décomposer les déchets",
+            "Consommer les bactéries"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Les végétaux sont généralement des organismes :",
+        reponses: [
+            "Hétérotrophes",
+            "Autotrophes",
+            "Parasites",
+            "Carnivores"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Comment appelle-t-on un organisme qui se nourrit de matière organique morte ?",
+        reponses: [
+            "Un producteur",
+            "Un prédateur",
+            "Un décomposeur",
+            "Un parasite"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Quelle est la principale source d'énergie des écosystèmes ?",
+        reponses: [
+            "Le vent",
+            "Le Soleil",
+            "Le pétrole",
+            "La Lune"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Une espèce est définie comme :",
+        reponses: [
+            "Tous les animaux d'un pays",
+            "Un groupe d'individus capables de se reproduire entre eux",
+            "Tous les végétaux",
+            "Tous les organismes microscopiques"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "La sélection naturelle favorise principalement :",
+        reponses: [
+            "Les individus les mieux adaptés",
+            "Les plus grands animaux",
+            "Les plus anciens organismes",
+            "Les espèces rares uniquement"
+        ],
+        bonneReponse: 0
+    },
+
+    {
+        question: "Quel gaz est principalement consommé lors de la photosynthèse ?",
+        reponses: [
+            "L'oxygène",
+            "Le dioxyde de carbone",
+            "L'azote",
+            "L'hydrogène"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "La disparition d'une espèce entraîne principalement :",
+        reponses: [
+            "Une augmentation automatique de la biodiversité",
+            "Une diminution de la biodiversité",
+            "Aucun changement",
+            "Une augmentation de l'oxygène"
+        ],
+        bonneReponse: 1
+    }
+
+];
+
+const questionsBiologie7 = [
+
+    {
+        question: "Quelle molécule porte l'information génétique ?",
+        reponses: [
+            "L'ARN",
+            "L'ADN",
+            "Le glucose",
+            "Les lipides"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quel organite est surnommé la centrale énergétique de la cellule ?",
+        reponses: [
+            "Le noyau",
+            "Le chloroplaste",
+            "La mitochondrie",
+            "Le ribosome"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Combien de chromosomes possède une cellule humaine ?",
+        reponses: [
+            "23",
+            "44",
+            "46",
+            "48"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Quel est le principal rôle des globules rouges ?",
+        reponses: [
+            "Produire des hormones",
+            "Transporter l'oxygène",
+            "Fabriquer des protéines",
+            "Combattre les bactéries"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quelle division cellulaire produit les gamètes ?",
+        reponses: [
+            "La mitose",
+            "La méiose",
+            "La transcription",
+            "La réplication"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Qui est considéré comme le père de la théorie de l'évolution ?",
+        reponses: [
+            "Pasteur",
+            "Darwin",
+            "Mendel",
+            "Lavoisier"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Quel organe absorbe la majorité des nutriments ?",
+        reponses: [
+            "Le foie",
+            "L'estomac",
+            "L'intestin grêle",
+            "Le côlon"
+        ],
+        bonneReponse: 2
+    },
+
+    {
+        question: "Quelle est l'unité de base du vivant ?",
+        reponses: [
+            "L'atome",
+            "La cellule",
+            "Le tissu",
+            "L'organe"
+        ],
+        bonneReponse: 1
+    },
+
+    {
+        question: "Les ribosomes fabriquent principalement :",
+        reponses: [
+            "Les protéines",
+            "L'ADN",
+            "Les lipides",
+            "Le glucose"
+        ],
+        bonneReponse: 0
+    },
+
+    {
+        question: "Quel gaz les végétaux utilisent principalement lors de la photosynthèse ?",
+        reponses: [
+            "L'oxygène",
+            "Le dioxyde de carbone",
+            "L'azote",
+            "L'hélium"
+        ],
+        bonneReponse: 1
+    }
+
+];
+
+const questionsChimie1 = [
+
+{
+    question: "Quelle particule possède une charge électrique positive ?",
+    reponses: ["L'électron", "Le proton", "Le neutron", "Le photon"],
+    bonneReponse: 1
+},
+
+{
+    question: "Quelle particule possède une charge électrique négative ?",
+    reponses: ["Le proton", "Le neutron", "L'électron", "Le noyau"],
+    bonneReponse: 2
+},
+
+{
+    question: "Où se trouvent les protons et les neutrons d'un atome ?",
+    reponses: ["Dans le noyau", "Autour du noyau", "Dans les électrons", "Dans les liaisons chimiques"],
+    bonneReponse: 0
+},
+
+{
+    question: "Le numéro atomique Z correspond au nombre de :",
+    reponses: ["Neutrons", "Protons", "Nucléons", "Molécules"],
+    bonneReponse: 1
+},
+
+{
+    question: "Un atome électriquement neutre possède :",
+    reponses: [
+        "Autant de protons que d'électrons",
+        "Autant de neutrons que d'électrons",
+        "Plus de protons que d'électrons",
+        "Aucun électron"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "Un ion qui a perdu un ou plusieurs électrons est :",
+    reponses: ["Un anion", "Un cation", "Un isotope", "Un neutron"],
+    bonneReponse: 1
+},
+
+{
+    question: "Deux isotopes d'un même élément possèdent le même nombre de :",
+    reponses: ["Neutrons", "Protons", "Nucléons", "Électrons dans tous les cas"],
+    bonneReponse: 1
+},
+
+{
+    question: "Quel est le symbole chimique de l'oxygène ?",
+    reponses: ["Ox", "O", "Og", "Oy"],
+    bonneReponse: 1
+},
+
+{
+    question: "Quel est le symbole chimique du sodium ?",
+    reponses: ["S", "So", "Na", "N"],
+    bonneReponse: 2
+},
+
+{
+    question: "Le tableau périodique classe les éléments principalement selon :",
+    reponses: [
+        "Leur masse volumique",
+        "Leur numéro atomique",
+        "Leur couleur",
+        "Leur état physique"
+    ],
+    bonneReponse: 1
+}
+
+];
+
+const questionsChimie2 = [
+
+{
+    question: "Quelle est la formule chimique de l'eau ?",
+    reponses: ["HO", "H2O", "H2O2", "OH2O"],
+    bonneReponse: 1
+},
+
+{
+    question: "La molécule O2 contient :",
+    reponses: [
+        "Deux atomes d'oxygène",
+        "Un atome d'oxygène",
+        "Deux atomes d'hydrogène",
+        "Un atome d'oxygène et un d'hydrogène"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "Une liaison covalente correspond principalement :",
+    reponses: [
+        "Au partage d'électrons entre deux atomes",
+        "À la disparition des électrons",
+        "Au partage de neutrons",
+        "À la création de protons"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "Quelle est la formule du dioxyde de carbone ?",
+    reponses: ["CO", "CO2", "C2O", "O2C2"],
+    bonneReponse: 1
+},
+
+{
+    question: "Dans NaCl, Na correspond à :",
+    reponses: ["L'azote", "Le sodium", "Le chlore", "Le calcium"],
+    bonneReponse: 1
+},
+
+{
+    question: "Dans NaCl, Cl correspond à :",
+    reponses: ["Le carbone", "Le calcium", "Le chlore", "Le cobalt"],
+    bonneReponse: 2
+},
+
+{
+    question: "Une molécule est constituée :",
+    reponses: [
+        "D'atomes liés entre eux",
+        "Uniquement de protons",
+        "Uniquement d'électrons",
+        "Toujours d'un seul élément"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "Quelle molécule est indispensable à la respiration cellulaire humaine ?",
+    reponses: ["O2", "N2", "Cl2", "H2"],
+    bonneReponse: 0
+},
+
+{
+    question: "La formule C6H12O6 correspond notamment au :",
+    reponses: ["Chlorure de sodium", "Glucose", "Dioxyde de carbone", "Dioxygène"],
+    bonneReponse: 1
+},
+
+{
+    question: "La molécule d'eau est dite polaire notamment parce que :",
+    reponses: [
+        "Les charges y sont réparties de façon inégale",
+        "Elle ne contient aucun électron",
+        "Elle possède une charge totale positive",
+        "Elle est composée de trois éléments différents"
+    ],
+    bonneReponse: 0
+}
+
+];
+
+const questionsChimie3 = [
+
+{
+    question: "La mole est une unité utilisée pour mesurer :",
+    reponses: [
+        "Une quantité de matière",
+        "Une température",
+        "Une longueur",
+        "Une pression"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "Une mole contient environ :",
+    reponses: [
+        "6,02 × 10²³ entités",
+        "6,02 × 10³ entités",
+        "10 entités",
+        "1000 entités"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "L'unité habituelle d'une masse molaire est :",
+    reponses: ["mol/L", "g/mol", "g/L", "kg/L"],
+    bonneReponse: 1
+},
+
+{
+    question: "La masse molaire de H2O est environ :",
+    reponses: ["10 g/mol", "16 g/mol", "18 g/mol", "32 g/mol"],
+    bonneReponse: 2
+},
+
+{
+    question: "Si M = 20 g/mol et n = 2 mol, quelle est la masse correspondante ?",
+    reponses: ["10 g", "20 g", "22 g", "40 g"],
+    bonneReponse: 3
+},
+
+{
+    question: "Quelle relation permet de calculer une quantité de matière ?",
+    reponses: ["n = m / M", "n = m × M", "n = M / m", "n = m + M"],
+    bonneReponse: 0
+},
+
+{
+    question: "Si une substance possède une masse molaire de 50 g/mol, 100 g correspondent à :",
+    reponses: ["0,5 mol", "1 mol", "2 mol", "50 mol"],
+    bonneReponse: 2
+},
+
+{
+    question: "La masse molaire du dioxygène O2 vaut environ, sachant que M(O) = 16 g/mol :",
+    reponses: ["8 g/mol", "16 g/mol", "18 g/mol", "32 g/mol"],
+    bonneReponse: 3
+},
+
+{
+    question: "0,5 mole d'une substance de masse molaire 40 g/mol possède une masse de :",
+    reponses: ["10 g", "20 g", "40 g", "80 g"],
+    bonneReponse: 1
+},
+
+{
+    question: "Pour passer d'une masse m à une quantité de matière n, il faut connaître :",
+    reponses: [
+        "La masse molaire",
+        "La température corporelle",
+        "Le pH uniquement",
+        "La couleur de la substance"
+    ],
+    bonneReponse: 0
+}
+
+];
+
+const questionsChimie4 = [
+
+{
+    question: "Dans une solution, le solvant est :",
+    reponses: [
+        "Le constituant qui dissout le soluté",
+        "Toujours un solide",
+        "Toujours le composé minoritaire",
+        "Une unité de concentration"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "Dans de l'eau salée, le sel est :",
+    reponses: ["Le solvant", "Le soluté", "Un proton", "Un indicateur coloré"],
+    bonneReponse: 1
+},
+
+{
+    question: "La concentration molaire peut s'exprimer en :",
+    reponses: ["g", "mol/L", "L/mol²", "kg"],
+    bonneReponse: 1
+},
+
+{
+    question: "Quelle relation définit la concentration molaire C ?",
+    reponses: ["C = n / V", "C = V / n", "C = n × V", "C = n + V"],
+    bonneReponse: 0
+},
+
+{
+    question: "Une solution contient 2 mol de soluté dans 1 L. Sa concentration est :",
+    reponses: ["0,5 mol/L", "1 mol/L", "2 mol/L", "3 mol/L"],
+    bonneReponse: 2
+},
+
+{
+    question: "Une dilution consiste à :",
+    reponses: [
+        "Ajouter du solvant",
+        "Ajouter systématiquement du soluté",
+        "Faire disparaître le solvant",
+        "Augmenter obligatoirement la concentration"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "Lors d'une dilution, la concentration de la solution :",
+    reponses: ["Augmente", "Diminue", "Reste toujours identique", "Devient obligatoirement nulle"],
+    bonneReponse: 1
+},
+
+{
+    question: "1000 mL correspondent à :",
+    reponses: ["0,01 L", "0,1 L", "1 L", "10 L"],
+    bonneReponse: 2
+},
+
+{
+    question: "250 mL correspondent à :",
+    reponses: ["0,025 L", "0,25 L", "2,5 L", "25 L"],
+    bonneReponse: 1
+},
+
+{
+    question: "On veut préparer une solution moins concentrée à partir d'une solution mère. On réalise :",
+    reponses: ["Une dilution", "Une combustion", "Une fusion nucléaire", "Une évaporation totale"],
+    bonneReponse: 0
+}
+
+];
+
+const questionsChimie5 = [
+
+{
+    question: "Une solution de pH 7 est généralement considérée comme :",
+    reponses: ["Acide", "Basique", "Neutre", "Toujours toxique"],
+    bonneReponse: 2
+},
+
+{
+    question: "Une solution de pH inférieur à 7 est :",
+    reponses: ["Acide", "Basique", "Neutre", "Toujours solide"],
+    bonneReponse: 0
+},
+
+{
+    question: "Une solution de pH supérieur à 7 est :",
+    reponses: ["Acide", "Basique", "Neutre", "Radioactive"],
+    bonneReponse: 1
+},
+
+{
+    question: "Parmi ces valeurs, laquelle correspond à la solution la plus acide ?",
+    reponses: ["pH 2", "pH 5", "pH 7", "pH 10"],
+    bonneReponse: 0
+},
+
+{
+    question: "Parmi ces valeurs, laquelle correspond à la solution la plus basique ?",
+    reponses: ["pH 2", "pH 6", "pH 7", "pH 12"],
+    bonneReponse: 3
+},
+
+{
+    question: "Le pH permet principalement d'évaluer :",
+    reponses: [
+        "L'acidité ou la basicité d'une solution",
+        "Sa masse",
+        "Son volume",
+        "Son nombre de neutrons"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "Lorsque la concentration en ions H3O+ augmente, le pH :",
+    reponses: ["Augmente", "Diminue", "Ne change jamais", "Devient toujours égal à 7"],
+    bonneReponse: 1
+},
+
+{
+    question: "Une solution tampon sert principalement à :",
+    reponses: [
+        "Limiter les variations de pH",
+        "Faire bouillir une solution",
+        "Supprimer tous les ions",
+        "Augmenter fortement la température"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "Le maintien d'un pH relativement stable est important dans l'organisme car :",
+    reponses: [
+        "De nombreuses protéines et réactions biologiques dépendent du pH",
+        "Le pH détermine le nombre de chromosomes",
+        "Le pH fabrique directement l'ADN",
+        "Le pH remplace l'oxygène"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "Une solution passe d'un pH de 7 à un pH de 4. Elle est devenue :",
+    reponses: ["Plus acide", "Plus basique", "Plus neutre", "Nécessairement plus chaude"],
+    bonneReponse: 0
+}
+
+];
+
+const questionsChimie6 = [
+
+{
+    question: "La chimie organique étudie principalement les composés contenant :",
+    reponses: ["Du carbone", "Du sodium uniquement", "Du fer uniquement", "De l'hélium uniquement"],
+    bonneReponse: 0
+},
+
+{
+    question: "Quel groupe caractérise notamment la fonction alcool ?",
+    reponses: ["-OH", "-COOH", "-NH2", "-Cl"],
+    bonneReponse: 0
+},
+
+{
+    question: "Quel groupe caractérise un acide carboxylique ?",
+    reponses: ["-OH", "-COOH", "-NH2", "-CH3 uniquement"],
+    bonneReponse: 1
+},
+
+{
+    question: "Le groupe -NH2 correspond à une fonction :",
+    reponses: ["Amine", "Alcool", "Acide carboxylique", "Cétone"],
+    bonneReponse: 0
+},
+
+{
+    question: "Les protéines sont constituées d'un enchaînement :",
+    reponses: ["D'acides aminés", "De nucléons", "De sels minéraux uniquement", "D'atomes de sodium uniquement"],
+    bonneReponse: 0
+},
+
+{
+    question: "Le glucose appartient principalement à la famille des :",
+    reponses: ["Glucides", "Lipides", "Protéines", "Minéraux"],
+    bonneReponse: 0
+},
+
+{
+    question: "Les triglycérides appartiennent à la famille des :",
+    reponses: ["Glucides", "Lipides", "Protéines", "Acides nucléiques"],
+    bonneReponse: 1
+},
+
+{
+    question: "L'ADN et l'ARN appartiennent à la famille des :",
+    reponses: ["Acides nucléiques", "Lipides", "Minéraux", "Vitamines"],
+    bonneReponse: 0
+},
+
+{
+    question: "Un acide aminé possède notamment :",
+    reponses: [
+        "Une fonction amine et une fonction acide carboxylique",
+        "Uniquement une fonction alcool",
+        "Uniquement du carbone",
+        "Aucun atome d'azote"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "Quelle molécule constitue une source énergétique importante pour les cellules ?",
+    reponses: ["Le glucose", "Le sodium métallique", "L'hélium", "Le chlore gazeux"],
+    bonneReponse: 0
+}
+
+];
+
+const questionsChimie7 = [
+
+{
+    question: "Un atome possède 8 protons. Son numéro atomique Z vaut :",
+    reponses: ["4", "8", "16", "Impossible à déterminer"],
+    bonneReponse: 1
+},
+
+{
+    question: "Un atome neutre possède 11 protons. Combien possède-t-il d'électrons ?",
+    reponses: ["10", "11", "12", "22"],
+    bonneReponse: 1
+},
+
+{
+    question: "Quelle est la masse molaire de CO2 si M(C) = 12 g/mol et M(O) = 16 g/mol ?",
+    reponses: ["28 g/mol", "32 g/mol", "44 g/mol", "60 g/mol"],
+    bonneReponse: 2
+},
+
+{
+    question: "Une substance de masse molaire 25 g/mol a une masse de 50 g. Quelle quantité de matière possède-t-on ?",
+    reponses: ["0,5 mol", "1 mol", "2 mol", "25 mol"],
+    bonneReponse: 2
+},
+
+{
+    question: "Une solution contient 0,5 mol de soluté dans 0,5 L. Quelle est sa concentration ?",
+    reponses: ["0,25 mol/L", "0,5 mol/L", "1 mol/L", "2 mol/L"],
+    bonneReponse: 2
+},
+
+{
+    question: "On ajoute de l'eau à une solution sans ajouter de soluté. Sa concentration :",
+    reponses: ["Augmente", "Diminue", "Reste identique", "Devient obligatoirement nulle"],
+    bonneReponse: 1
+},
+
+{
+    question: "Entre une solution de pH 3 et une solution de pH 6, laquelle est la plus acide ?",
+    reponses: ["Celle de pH 3", "Celle de pH 6", "Elles sont identiques", "Impossible à déterminer"],
+    bonneReponse: 0
+},
+
+{
+    question: "Quelle association est correcte ?",
+    reponses: [
+        "Glucose → glucide",
+        "Protéine → lipide",
+        "ADN → glucide",
+        "Triglycéride → protéine"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "Quelle fonction chimique retrouve-t-on dans tous les acides aminés standards ?",
+    reponses: [
+        "Une fonction amine et une fonction acide carboxylique",
+        "Une fonction alcool uniquement",
+        "Une fonction ester uniquement",
+        "Une fonction aldéhyde uniquement"
+    ],
+    bonneReponse: 0
+},
+
+{
+    question: "Pourquoi les solutions tampons sont-elles particulièrement importantes dans les systèmes biologiques ?",
+    reponses: [
+        "Elles limitent les variations importantes de pH",
+        "Elles produisent directement de l'ATP",
+        "Elles transforment les lipides en ADN",
+        "Elles empêchent toutes les réactions chimiques"
+    ],
+    bonneReponse: 0
+}
+
+];
+
+const imagesPokemon = {
+
+    "Salamèche":
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+
+    "Pikachu":
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+
+    "Carapuce":
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+
+    "Bulbizarre":
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+
+    "Évoli":
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png",
+
+    "Riolu":
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/447.png",
+
+    "Fantominus":
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/92.png",
+
+    "Minidraco":
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/147.png"
+
+};
+
+let pokemonChoisi = "";
+let indexQuestion = 0;
+let score = 0;
+let questionsActuelles = questionsBiologie1;
+
+let profil = null;
+
+try {
+    profil = JSON.parse(localStorage.getItem("profilDresseur"));
+} catch (erreur) {
+    console.log("LocalStorage indisponible :", erreur);
+}
+
+if (profil && !Array.isArray(profil.badges)) {
+    profil.badges = [];
+    localStorage.setItem("profilDresseur", JSON.stringify(profil));
+}
+
+if (profil) {
+    creationProfil.classList.remove("actif");
+    carteDresseur.classList.add("actif");
+    afficherProfil();
+}
+
+boutonCreerProfil.addEventListener("click", () => {
+    const nomDresseur = champNomDresseur.value.trim();
+
+    if (nomDresseur === "") {
+        erreurProfil.textContent = "Entre ton prénom.";
+        return;
+    }
+
+    if (pokemonChoisi === "") {
+        erreurProfil.textContent = "Choisis ton premier Pokémon.";
+        return;
+    }
+
+    profil = {
+    nom: nomDresseur,
+    pokemon: pokemonChoisi,
+    niveau: 1,
+    xp: 0,
+    pokedollars: 0,
+    badges: []
+};
+
+    localStorage.setItem("profilDresseur", JSON.stringify(profil));
+
+creationProfil.classList.remove("actif");
+carteDresseur.classList.add("actif");
+
+afficherProfil();
+
+});
+
+boutonEntrainement.addEventListener("click", () => {
+    menuPrincipal.classList.remove("actif");
+    menuMatieres.classList.add("actif");
+});
+
+boutonRetour.addEventListener("click", () => {
+    menuMatieres.classList.remove("actif");
+    menuPrincipal.classList.add("actif");
+});
+
+document.querySelectorAll(".matiere").forEach((bouton) => {
+    bouton.addEventListener("click", () => {
+        const matiere = bouton.dataset.matiere;
+
+        if (matiere === "biologie") {
+
+            menuMatieres.classList.remove("actif");
+            menuQcmBiologie.classList.add("actif");
+
+        } else if (matiere === "chimie") {
+
+            menuMatieres.classList.remove("actif");
+            menuQcmChimie.classList.add("actif");
+
+        } else {
+
+            alert("Cette matière sera ajoutée bientôt.");
+
+        }
+    });
+});
+
+
+document.querySelectorAll(".qcm-bio").forEach((bouton) => {
+    bouton.addEventListener("click", () => {
+        const numeroQcm = bouton.dataset.qcm;
+
+    if (numeroQcm === "1") {
+    questionsActuelles = questionsBiologie1;
+
+} else if (numeroQcm === "2") {
+    questionsActuelles = questionsBiologie2;
+
+} else if (numeroQcm === "3") {
+    questionsActuelles = questionsBiologie3;
+
+}  else if (numeroQcm === "4") {
+    questionsActuelles = questionsBiologie4;
+
+} else if (numeroQcm === "5") {
+    questionsActuelles = questionsBiologie5;
+
+}  else if (numeroQcm === "6") {
+    questionsActuelles = questionsBiologie6;
+
+}   else if (numeroQcm === "7") {
+    questionsActuelles = questionsBiologie7;
+
+} else {
+    alert("Ce QCM sera ajouté prochainement.");
+    return;
+}
+
+        indexQuestion = 0;
+        score = 0;
+
+        menuQcmBiologie.classList.remove("actif");
+        ecranQuiz.classList.add("actif");
+
+        afficherQuestion();
+    });
+});
+
+document.querySelectorAll(".qcm-chimie").forEach((bouton) => {
+
+    bouton.addEventListener("click", () => {
+
+        const numeroQcm = bouton.dataset.qcm;
+
+        if (numeroQcm === "1") {
+            questionsActuelles = questionsChimie1;
+
+        } else if (numeroQcm === "2") {
+            questionsActuelles = questionsChimie2;
+
+        } else if (numeroQcm === "3") {
+            questionsActuelles = questionsChimie3;
+
+        } else if (numeroQcm === "4") {
+            questionsActuelles = questionsChimie4;
+
+        } else if (numeroQcm === "5") {
+            questionsActuelles = questionsChimie5;
+
+        } else if (numeroQcm === "6") {
+            questionsActuelles = questionsChimie6;
+
+        } else if (numeroQcm === "7") {
+            questionsActuelles = questionsChimie7;
+        }
+
+        indexQuestion = 0;
+        score = 0;
+
+        menuQcmChimie.classList.remove("actif");
+        ecranQuiz.classList.add("actif");
+
+        afficherQuestion();
+
+    });
+
+});
+
+boutonRetourQcmBiologie.addEventListener("click", () => {
+    menuQcmBiologie.classList.remove("actif");
+    menuMatieres.classList.add("actif");
+});
+
+boutonRetourQcmChimie.addEventListener("click", () => {
+    menuQcmChimie.classList.remove("actif");
+    menuMatieres.classList.add("actif");
+});
+function afficherQuestion() {
+   const questionActuelle = questionsActuelles[indexQuestion];
+    progression.textContent =
+    `Question ${indexQuestion + 1} sur ${questionsActuelles.length}`;
+
+    texteQuestion.textContent = questionActuelle.question;
+    zoneReponses.innerHTML = "";
+    correction.textContent = "";
+    boutonSuivant.style.display = "none";
+
+    questionActuelle.reponses.forEach((reponse, index) => {
+        const bouton = document.createElement("button");
+
+        bouton.textContent = reponse;
+        bouton.classList.add("bouton-reponse");
+
+        bouton.addEventListener("click", () => {
+            verifierReponse(index);
+        });
+
+        zoneReponses.appendChild(bouton);
+    });
+}
+
+function verifierReponse(indexChoisi) {
+    const questionActuelle = questionsActuelles[indexQuestion];
+    const boutons = document.querySelectorAll(".bouton-reponse");
+
+    boutons.forEach((bouton) => {
+        bouton.disabled = true;
+    });
+
+    if (indexChoisi === questionActuelle.bonneReponse) {
+        correction.textContent = "Bonne réponse ! Tu gagnes 10 XP.";
+        score++;
+    } else {
+        const bonneReponse =
+            questionActuelle.reponses[questionActuelle.bonneReponse];
+
+        correction.textContent =
+            `Mauvaise réponse. La bonne réponse était : ${bonneReponse}.`;
+    }
+
+    boutonSuivant.style.display = "block";
+}
+
+boutonSuivant.addEventListener("click", () => {
+    indexQuestion++;
+if (indexQuestion < questionsActuelles.length) {
+        afficherQuestion();
+    } else {
+        terminerQuiz();
+    }
+});
+
+function terminerQuiz() {
+    const xpObtenu = score * 10;
+    const pokedollarsObtenus = score * 20;
+
+    profil.xp += xpObtenu;
+    profil.pokedollars += pokedollarsObtenus;
+    const ancienNiveau = profil.niveau;
+
+profil.niveau = Math.floor(profil.xp / 100) + 1;
+
+if (profil.niveau > ancienNiveau) {
+
+    alert(
+        `⭐ Félicitations !\n\n${profil.pokemon} passe au niveau ${profil.niveau} !`
+    );
+
+}
+
+const note = score / questionsActuelles.length;
+
+if (note >= 0.8 && !profil.badges.includes("Biologie")) {
+
+    profil.badges.push("Biologie");
+
+    alert("🏅 Félicitations ! Tu as obtenu le Badge Biologie !");
+
+}
+
+    localStorage.setItem("profilDresseur", JSON.stringify(profil));
+
+    scoreFinal.textContent =
+    `Score : ${score} sur ${questionsActuelles.length}`;
+    xpGagne.textContent =
+        `Récompenses : ${xpObtenu} XP et ${pokedollarsObtenus} Pokédollars`;
+
+    niveauJoueur.textContent =
+        `Niveau actuel : ${profil.niveau}`;
+
+        let message = "";
+
+if (score === questionsBiologie.length) {
+
+    message =
+    `🌟 Félicitations ${profil.nom} !
+
+    C'est un sans-faute !
+
+    ${profil.pokemon} est très fier de toi. Continue ainsi et tu deviendras un grand Maître Pokémon de la connaissance !`;
+
+}
+else if (score >= questionsBiologie.length - 1) {
+
+    message =
+    `👏 Très bon travail ${profil.nom} !
+
+    Tu progresses très vite.
+
+    Encore un petit effort et tu réussiras toutes les questions !`;
+
+}
+else if (score >= Math.ceil(questionsBiologie.length / 2)) {
+
+    message =
+    `😊 Bon travail !
+
+    Tu maîtrises déjà plusieurs notions.
+
+    Relis les corrections puis retente le défi avec ${profil.pokemon} !`;
+
+}
+else {
+
+    message =
+    `💪 Ne baisse pas les bras !
+
+    Même les plus grands dresseurs ont commencé par perdre des combats.
+
+    Reprends ton cours et reviens tenter ta chance !`;
+
+}
+
+messageProfesseurResultat.textContent = message;
+
+    ecranQuiz.classList.remove("actif");
+    professeurResultat.classList.add("actif");
+}
+
+boutonQuitterQuiz.addEventListener("click", () => {
+    ecranQuiz.classList.remove("actif");
+    menuMatieres.classList.add("actif");
+});
+
+boutonRejouer.addEventListener("click", () => {
+    indexQuestion = 0;
+    score = 0;
+
+    ecranResultats.classList.remove("actif");
+    ecranQuiz.classList.add("actif");
+
+    afficherQuestion();
+});
+
+boutonRetourResultats.addEventListener("click", () => {
+    ecranResultats.classList.remove("actif");
+    menuPrincipal.classList.add("actif");
+});
+
+function afficherProfil() {
+    const xpDansNiveau = profil.xp % 100;
+    const pourcentageXp = xpDansNiveau;
+
+    affichageNom.textContent = profil.nom;
+    affichagePokemon.textContent = profil.pokemon;
+    affichageNiveau.textContent = `Niveau ${profil.niveau}`;
+
+    imagePokemon.src = imagesPokemon[profil.pokemon];
+    imagePokemon.alt = profil.pokemon;
+
+    remplissageXp.style.width = `${pourcentageXp}%`;
+
+    texteXp.textContent =
+        `${xpDansNiveau} / 100 XP`;
+
+    affichagePokedollars.textContent =
+        `💰 ${profil.pokedollars} Pokédollars`;
+
+        const listeBadges = document.getElementById("liste-badges");
+
+if (profil.badges.length === 0) {
+
+    listeBadges.textContent = "Aucun badge";
+
+} else {
+
+    listeBadges.textContent = profil.badges.join(" • ");
+
+}
+}
+
+boutonContinuerAventure.addEventListener("click", () => {
+    carteDresseur.classList.remove("actif");
+    menuPrincipal.classList.add("actif");
+});
+
+boutonVoirResultats.addEventListener("click", () => {
+
+    professeurResultat.classList.remove("actif");
+    ecranResultats.classList.add("actif");
+
+});
