@@ -1,0 +1,847 @@
+/* =========================
+   RÉGLAGES GÉNÉRAUX
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        radial-gradient(circle at top, #8fd3ff 0%, #4a90e2 45%, #173b6c 100%);
+}
+
+
+/* =========================
+   BOÎTIER DU POKÉDEX
+========================= */
+
+#app {
+    position: relative;
+
+    width: 100%;
+    max-width: 620px;
+    min-height: 570px;
+
+    padding: 80px 35px 35px;
+
+    text-align: center;
+
+    background: linear-gradient(
+        145deg,
+        #e63946,
+        #c1121f
+    );
+
+    border: 8px solid #741016;
+    border-radius: 30px;
+
+    box-shadow:
+        0 18px 0 #4e0b0f,
+        0 28px 45px rgba(0, 0, 0, 0.45);
+}
+
+
+/* Cercle lumineux du Pokédex */
+
+#app::before {
+    content: "";
+
+    position: absolute;
+    top: 22px;
+    left: 28px;
+
+    width: 42px;
+    height: 42px;
+
+    background: #74d9ff;
+
+    border: 6px solid white;
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 4px #143642,
+        0 0 18px #74d9ff;
+}
+
+
+/* Petites lumières */
+
+#app::after {
+    content: "●  ●  ●";
+
+    position: absolute;
+    top: 24px;
+    left: 100px;
+
+    color: #ffd60a;
+    font-size: 22px;
+    letter-spacing: 8px;
+
+    text-shadow:
+        25px 0 #52b788,
+        50px 0 #ff595e;
+}
+
+
+/* =========================
+   ÉCRANS
+========================= */
+
+.ecran {
+    display: none;
+
+    min-height: 440px;
+    padding: 30px 25px;
+
+    background: linear-gradient(
+        180deg,
+        #f7fff7,
+        #d8f3dc
+    );
+
+    border: 7px solid #252525;
+    border-radius: 18px;
+
+    box-shadow:
+        inset 0 0 18px rgba(0, 0, 0, 0.18),
+        0 8px 0 #710f15;
+}
+
+.ecran.actif {
+    display: block;
+    animation: apparition 0.35s ease;
+}
+
+
+/* =========================
+   TITRES
+========================= */
+
+h1 {
+    margin-bottom: 12px;
+
+    color: #ffcb05;
+    font-size: clamp(2rem, 8vw, 3.3rem);
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        3px 3px 0 #2a75bb,
+        -2px -2px 0 #2a75bb,
+        4px 5px 0 #18345e;
+}
+
+h2 {
+    margin-bottom: 25px;
+
+    color: #18345e;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+}
+
+p {
+    margin: 15px 0;
+
+    color: #263238;
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   BOUTONS
+========================= */
+
+button {
+    display: block;
+
+    width: min(100%, 330px);
+
+    margin: 13px auto;
+    padding: 14px 20px;
+
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+
+    background: linear-gradient(
+        180deg,
+        #3a86ff,
+        #1d5fc4
+    );
+
+    border: 4px solid #163d73;
+    border-radius: 14px;
+
+    box-shadow:
+        0 6px 0 #102c54,
+        0 9px 14px rgba(0, 0, 0, 0.25);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        filter 0.15s ease;
+}
+
+button:hover {
+    filter: brightness(1.12);
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 0 #102c54,
+        0 12px 17px rgba(0, 0, 0, 0.28);
+}
+
+button:active {
+    transform: translateY(5px);
+
+    box-shadow:
+        0 1px 0 #102c54,
+        0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.72;
+}
+
+
+/* Bouton Entraînement */
+
+#entrainement {
+    background: linear-gradient(
+        180deg,
+        #52b788,
+        #2d6a4f
+    );
+
+    border-color: #1b4332;
+    box-shadow: 0 6px 0 #16392a;
+}
+
+
+/* Bouton Examen */
+
+#examen {
+    background: linear-gradient(
+        180deg,
+        #ff595e,
+        #c1121f
+    );
+
+    border-color: #780000;
+    box-shadow: 0 6px 0 #680000;
+}
+
+
+/* Bouton Statistiques */
+
+#stats {
+    background: linear-gradient(
+        180deg,
+        #ffca3a,
+        #e09f00
+    );
+
+    color: #342300;
+
+    border-color: #8a5e00;
+    box-shadow: 0 6px 0 #6b4900;
+}
+
+
+/* Boutons retour */
+
+#retour-menu,
+#quitter-quiz,
+#retour-resultats {
+    margin-top: 25px;
+
+    background: linear-gradient(
+        180deg,
+        #6c757d,
+        #343a40
+    );
+
+    border-color: #212529;
+    box-shadow: 0 6px 0 #17191b;
+}
+
+
+/* =========================
+   MATIÈRES
+========================= */
+
+.matiere {
+    min-width: 230px;
+}
+
+.matiere[data-matiere="biologie"] {
+    background: linear-gradient(
+        180deg,
+        #74c69d,
+        #2d6a4f
+    );
+}
+
+.matiere[data-matiere="chimie"] {
+    background: linear-gradient(
+        180deg,
+        #9d4edd,
+        #5a189a
+    );
+}
+
+.matiere[data-matiere="physique"] {
+    color: #272000;
+
+    background: linear-gradient(
+        180deg,
+        #fee440,
+        #f4a261
+    );
+}
+
+.matiere[data-matiere="maths"] {
+    background: linear-gradient(
+        180deg,
+        #4cc9f0,
+        #4361ee
+    );
+}
+
+.matiere[data-matiere="anglais"] {
+    background: linear-gradient(
+        180deg,
+        #ff758f,
+        #c9184a
+    );
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+#progression {
+    display: inline-block;
+
+    margin-bottom: 20px;
+    padding: 8px 16px;
+
+    color: white;
+    font-weight: bold;
+
+    background: #18345e;
+    border-radius: 20px;
+}
+
+#question {
+    min-height: 80px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#reponses {
+    margin-top: 20px;
+}
+
+.bouton-reponse {
+    width: min(100%, 390px);
+
+    color: #172026;
+
+    background: linear-gradient(
+        180deg,
+        #ffffff,
+        #dbeafe
+    );
+
+    border-color: #3a86ff;
+    box-shadow: 0 5px 0 #1d5fc4;
+}
+
+.bouton-reponse:hover {
+    background: linear-gradient(
+        180deg,
+        #fff6a6,
+        #ffcf33
+    );
+}
+
+#correction {
+    min-height: 55px;
+    margin-top: 25px;
+
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+#question-suivante {
+    display: none;
+
+    background: linear-gradient(
+        180deg,
+        #ffca3a,
+        #e09f00
+    );
+
+    color: #342300;
+
+    border-color: #8a5e00;
+    box-shadow: 0 6px 0 #6b4900;
+}
+
+
+/* =========================
+   RÉSULTATS
+========================= */
+
+#ecran-resultats {
+    text-align: center;
+}
+
+#score-final,
+#xp-gagne,
+#niveau-joueur {
+    margin: 18px auto;
+    padding: 14px;
+
+    max-width: 350px;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    background: #ffffff;
+    border: 3px solid #18345e;
+    border-radius: 12px;
+}
+
+#xp-gagne {
+    color: #735000;
+
+    background: #fff3b0;
+    border-color: #e09f00;
+}
+
+#niveau-joueur {
+    color: #1b4332;
+
+    background: #d8f3dc;
+    border-color: #2d6a4f;
+}
+
+#rejouer {
+    background: linear-gradient(
+        180deg,
+        #52b788,
+        #2d6a4f
+    );
+
+    border-color: #1b4332;
+    box-shadow: 0 6px 0 #16392a;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes apparition {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================
+   VERSION TÉLÉPHONE
+========================= */
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    #app {
+        min-height: calc(100vh - 20px);
+        padding: 75px 15px 25px;
+
+        border-width: 5px;
+        border-radius: 22px;
+    }
+
+    .ecran {
+        min-height: 430px;
+        padding: 25px 14px;
+
+        border-width: 5px;
+    }
+
+    button {
+        padding: 13px 12px;
+    }
+}
+
+/* =========================
+   POKÉMON SUR LES CÔTÉS
+========================= */
+
+.pokemon-decoration {
+    position: fixed;
+    top: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+    transform: translateY(-50%);
+
+    z-index: 0;
+}
+
+.pokemon-gauche {
+    left: 10px;
+}
+
+.pokemon-droite {
+    right: 10px;
+}
+
+.pokemon-decoration img {
+    width: 115px;
+    height: 115px;
+
+    object-fit: contain;
+
+    filter: drop-shadow(
+        0 7px 5px rgba(0, 0, 0, 0.4)
+    );
+
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease;
+}
+
+.pokemon-decoration img:hover {
+    transform: scale(1.18) rotate(4deg);
+
+    filter: drop-shadow(
+        0 10px 8px rgba(0, 0, 0, 0.5)
+    );
+}
+
+/* Le Pokédex reste devant les Pokémon */
+
+#app {
+    position: relative;
+    z-index: 2;
+}
+
+/* Réduction sur écran moyen */
+
+@media (max-width: 1050px) {
+    .pokemon-decoration img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* On cache les décorations sur téléphone */
+
+@media (max-width: 800px) {
+    .pokemon-decoration {
+        display: none;
+    }
+}
+
+/* =========================
+   CARTE DU DRESSEUR
+========================= */
+
+.profil-dresseur {
+    max-width: 390px;
+    margin: 0 auto 25px;
+    padding: 20px;
+
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #dbeafe
+    );
+
+    border: 4px solid #18345e;
+    border-radius: 18px;
+
+    box-shadow: 0 8px 0 #102c54;
+}
+
+#affichage-nom {
+    margin-bottom: 10px;
+
+    color: #18345e;
+    font-size: 1.8rem;
+}
+
+#image-pokemon {
+    width: 190px;
+    height: 190px;
+
+    object-fit: contain;
+
+    filter: drop-shadow(
+        0 10px 8px rgba(0, 0, 0, 0.25)
+    );
+}
+
+#affichage-pokemon {
+    color: #c1121f;
+    font-size: 1.35rem;
+    font-weight: bold;
+}
+
+#affichage-niveau {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.barre-xp {
+    width: 100%;
+    height: 25px;
+
+    margin: 15px 0 8px;
+
+    overflow: hidden;
+
+    background: #cbd5e1;
+    border: 3px solid #18345e;
+    border-radius: 20px;
+}
+
+#remplissage-xp {
+    width: 0%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #52b788,
+        #ffca3a
+    );
+
+    transition: width 0.8s ease;
+}
+
+#texte-xp {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+#affichage-pokedollars {
+    padding: 10px;
+
+    color: #6b4900;
+    font-weight: bold;
+
+    background: #fff3b0;
+    border: 2px solid #e09f00;
+    border-radius: 12px;
+}
+
+#badges {
+    margin-top: 8px;
+    font-size: 1.4rem;
+    letter-spacing: 4px;
+}
+
+/* ==========================
+   CARTES DES POKÉMONS
+========================== */
+
+#choix-pokemon{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:20px;
+    margin-top:25px;
+}
+
+.pokemon-depart{
+    background:white;
+    border:4px solid #18345e;
+    border-radius:20px;
+
+    padding:15px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    box-shadow:0 8px 0 #18345e;
+}
+
+.pokemon-depart:hover{
+
+    transform:translateY(-8px) scale(1.04);
+
+    box-shadow:0 15px 20px rgba(0,0,0,.3);
+
+}
+
+.pokemon-depart img{
+
+    width:140px;
+    height:140px;
+
+    object-fit:contain;
+
+    margin-bottom:10px;
+
+}
+
+.pokemon-depart strong{
+
+    font-size:1.3rem;
+    color:#18345e;
+
+}
+
+.type-pokemon{
+
+    margin:10px 0;
+
+    padding:6px 15px;
+
+    border-radius:20px;
+
+    color:white;
+
+    font-weight:bold;
+
+}
+
+.type-feu{background:#e63946;}
+.type-eau{background:#2196f3;}
+.type-plante{background:#43a047;}
+.type-electrik{background:#f9c80e;color:black;}
+.type-normal{background:#8d99ae;}
+.type-combat{background:#b5651d;}
+.type-spectre{background:#6a4c93;}
+.type-dragon{background:#4361ee;}
+
+.pokemon-depart small{
+
+    text-align:center;
+
+    color:#555;
+
+    margin-top:10px;
+
+}
+
+.pokemon-depart.selectionne{
+
+    border-color:#ffd60a;
+
+    background:#fff7d6;
+
+    transform:scale(1.05);
+
+    box-shadow:0 0 25px gold;
+
+}
+
+#image-professeur{
+
+    width:220px;
+
+    margin:20px auto;
+
+    display:block;
+
+}
+
+#boite-dialogue{
+
+    background:white;
+
+    border:4px solid #18345e;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin:20px auto;
+
+    max-width:650px;
+
+    min-height:120px;
+
+    font-size:1.2rem;
+
+    line-height:1.6;
+
+}
+
+#texte-professeur{
+
+    margin:0;
+
+}
+
+#image-professeur-resultat {
+    display: block;
+
+    width: 220px;
+    max-height: 280px;
+
+    margin: 10px auto;
+
+    object-fit: contain;
+}
+
+.boite-dialogue-professeur {
+    max-width: 650px;
+    min-height: 120px;
+
+    margin: 20px auto;
+    padding: 20px;
+
+    background: white;
+
+    border: 4px solid #18345e;
+    border-radius: 20px;
+
+    font-size: 1.2rem;
+    line-height: 1.6;
+
+    box-shadow: 0 7px 0 #102c54;
+}
+
+#message-professeur-resultat {
+    margin: 0;
+}
