@@ -1,4 +1,3 @@
-alert("JavaScript chargé !");
 const professeurResultat =
     document.getElementById("professeur-resultat");
 
